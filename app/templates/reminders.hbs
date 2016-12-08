@@ -1,9 +1,12 @@
 <ul class="spec-reminder-item">
   {{#each model as |reminder|}}
-  <article>
-    <h2>{{#link-to 'reminders.reminder' reminder}}{{reminder.title}}{{/link-to}}</h2>
-    <p>{{reminder.date}}</p>
-  </article>
+    <article>
+      <h2>
+        {{#link-to 'reminders.reminder' reminder}}
+          {{reminder.title}}
+        {{/link-to}}</h2>
+        <p>{{reminder.date}}</p>
+    </article>
   {{/each}}
 </ul>
 
