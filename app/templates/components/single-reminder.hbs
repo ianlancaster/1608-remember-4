@@ -1,0 +1,18 @@
+<article>
+  {{#if category.isEditing}}
+    {{input value=model.title}}
+    {{input value=model.date}}
+    {{input value=model.notes}}
+    <button {{action 'updateReminder' reminder}}>Save</button>
+  {{else}}
+    <h2>
+      {{#link-to 'model.reminder' reminder}}
+        {{model.title}}
+      {{/link-to}}
+    </h2>
+    <p>{{model.date}}</p>
+    <p>{{model.notes}}</p>
+    <button class="btn btn-xs btn-success" {{action 'editCategory' category}}>Edit</button>
+  {{/if}}
+</article>
+{{yield}}
