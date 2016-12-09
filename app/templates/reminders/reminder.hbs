@@ -1,15 +1,7 @@
-  <article>
-    {{#if category.isEditing}}
-      {{input value=model.title}}
-      {{input value=model.date}}
-      {{input value=model.notes}}
-      <button {{action 'updateReminder' reminder}}>Save</button>
-    {{else}}
-      <h2>{{model.title}}</h2>
-      <p>{{model.date}}</p>
-      <p>{{model.notes}}</p>
-      <button class="btn btn-xs btn-success" {{action 'editCategory' category}}>Edit</button>
-    {{/if}}
-  </article>
+<article>
+  <h2>{{model.title}}</h2>
+  <p>{{model.date}}</p>
+  <p>{{model.notes}}</p>
+</article>
 
 {{outlet}}

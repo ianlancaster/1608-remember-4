@@ -6,8 +6,8 @@
     <button {{action 'updateReminder' reminder}}>Save</button>
   {{else}}
     <h2>
-      {{#link-to 'model.reminder' reminder}}
-        {{model.title}}
+      {{#link-to 'reminders.reminder' model}}
+        Reminder Component - {{model.title}}
       {{/link-to}}
     </h2>
     <p>{{model.date}}</p>
