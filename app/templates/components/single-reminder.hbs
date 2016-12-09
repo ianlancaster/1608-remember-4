@@ -1,9 +1,9 @@
 <article>
-  {{#if category.isEditing}}
+  {{#if model.isEditing}}
     {{input value=model.title}}
     {{input value=model.date}}
     {{input value=model.notes}}
-    <button {{action 'updateReminder' reminder}}>Save</button>
+    <button {{action 'updateReminder' model}}>Save</button>
   {{else}}
     <h2>
       {{#link-to 'reminders.reminder' model}}
@@ -12,7 +12,7 @@
     </h2>
     <p>{{model.date}}</p>
     <p>{{model.notes}}</p>
-    <button class="btn btn-xs btn-success" {{action 'editCategory' category}}>Edit</button>
+    <button class="btn btn-xs btn-success" {{action 'editReminder' model}}>Edit</button>
   {{/if}}
 </article>
 {{yield}}
