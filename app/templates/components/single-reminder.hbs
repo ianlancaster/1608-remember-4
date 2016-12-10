@@ -3,7 +3,7 @@
     {{input value=model.title}}
     {{input value=model.date}}
     {{input value=model.notes}}
-    <button {{action 'updateReminder' model}}>Save</button>
+    <button {{action 'saveReminder' model}}>Save</button>
   {{else}}
     <h2>
       {{#link-to 'reminders.reminder' model}}

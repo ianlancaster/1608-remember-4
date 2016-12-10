@@ -6,15 +6,36 @@ export default Ember.Component.extend({
   tagName: 'section',
   classNames: ['reminder'],
 
+  title: '',
+  date: '',
+  notes: '',
+
   actions: {
+    createReminder() {
+      const reminder = this.getProperties('title', 'date', 'notes');
+      reminder.date = new Date(reminder.date);
+      this.get('store').createRecord('reminder', reminder).save().then(() => {
+        this.setProperties({ title: '', date: '', notes: '' });
+      });
+    },
+
     editReminder(reminder) {
       reminder.set('isEditing', true);
     },
 
-    updateReminder(reminder) {
-      reminder.save().then(
-        reminder => reminder.set('isEditing', false)
-      );
+    // saveReminder(reminder) {
+    //   reminder.save().then(
+    //     reminder => reminder.set('isEditing', false)
+    //   );
+    // },
+
+    saveReminder(oldReminder) {
+      const reminder = oldReminder.getProperties('title', 'date', 'notes');
+      reminder.date = new Date(reminder.date);
+      this.get('store').createRecord('reminder', reminder).save().then(() => {
+        this.setProperties({ title: '', date: '', notes: '' });
+      });
+      oldReminder.destroyRecord();
     },
 
     deleteReminder(reminder) {
