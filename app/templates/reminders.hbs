@@ -1,6 +1,6 @@
 <ul class="spec-reminder-item">
   {{#each model as |reminder|}}
-    {{single-reminder model=reminder }}
+    {{single-reminder reminder=reminder }}
   {{/each}}
   {{#link-to 'reminders.new'}}
     <button> Add Reminder </button>

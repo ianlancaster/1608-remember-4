@@ -1,18 +1,29 @@
 <article>
-  {{#if model.isEditing}}
-    {{input value=model.title}}
-    {{input value=model.date}}
-    {{input value=model.notes}}
-    <button {{action 'saveReminder' model}}>Save</button>
+  {{#if reminder.isEditing}}
+  <form class="add-reminder--form" {{action 'saveReminder' reminder on="submit"}}>
+    <label>
+      Title
+      {{input class="spec-input-title" value=reminder.title}}
+    </label>
+    <label>
+      Date
+      {{input type="date" class="spec-input-date" value=reminder.date}}
+    </label>
+    <label>
+      Notes
+      {{textarea class="spec-textarea-notes" value=reminder.notes}}
+    </label>
+    <button class="add-reminder--submit">Submit</button>
+  </form>
   {{else}}
     <h2>
-      {{#link-to 'reminders.reminder' model}}
-        Reminder Component - {{model.title}}
+      {{#link-to 'reminders.reminder' reminder}}
+        Reminder Component - {{reminder.title}}
       {{/link-to}}
     </h2>
-    <p>{{model.date}}</p>
-    <p>{{model.notes}}</p>
-    <button class="btn btn-xs btn-success" {{action 'editReminder' model}}>Edit</button>
+    <p>{{reminder.date}}</p>
+    <p>{{reminder.notes}}</p>
+    <button class="btn btn-xs btn-success" {{action 'editReminder' reminder}}>Edit</button>
   {{/if}}
 </article>
 {{yield}}
