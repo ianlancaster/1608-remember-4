@@ -1,5 +1,5 @@
+// jshint ignore: start
 import { test } from 'qunit';
-// import Ember from 'ember-cli';
 import moduleForAcceptance from 'remember/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | add reminder', {
