@@ -24,7 +24,7 @@
       </h2>
       <p class="reminder-date">{{reminder.date}}</p>
       <p class="reminder-notes">{{reminder.notes}}</p>
-      <button class="btn btn-xs btn-success" {{action 'editReminder' reminder}}>Edit</button>
+      <button class="reminder-edit" {{action 'editReminder' reminder}}>Edit</button>
     {{else}}
       <h2 class="reminder-title">{{model.title}}</h2>
       <p class="reminder-date">{{model.date}}</p>
