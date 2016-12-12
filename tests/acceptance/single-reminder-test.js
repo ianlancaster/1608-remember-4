@@ -21,3 +21,18 @@ moduleForAcceptance('Acceptance | single reminder', {
       assert.equal(Ember.$('.reminder-title:first').text().trim(), 'sample title');
     });
   });
+
+  test('it should add a new reminder to the rendered list when the add reminder field is submitted with values', function(assert) {
+    visit('/reminders');
+    click('.reminder-edit:first');
+    let title1 = Ember.$('.reminder-title:first').text().trim()
+
+    fillIn('.spec-input-title', 'revert me');
+    click('.revert-reminder--revert');
+    let title2 = Ember.$('.reminder-title:first').text().trim()
+
+
+    andThen(function() {
+      assert.equal(title1, title2);
+    });
+  });
