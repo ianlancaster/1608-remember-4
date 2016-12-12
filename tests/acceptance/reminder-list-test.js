@@ -1,16 +1,18 @@
-/* globals server */
-
+/* globals server, Ember */
 import { test } from 'qunit';
 import moduleForAcceptance from 'remember/tests/helpers/module-for-acceptance';
 
-import Ember from 'ember';
-
-moduleForAcceptance('Acceptance | reminders list');
+moduleForAcceptance('Acceptance | reminders list', {
+  beforeEach() {
+    server.createList('reminder', 5);
+  },
+  afterEach() {
+    server.shutdown();
+  }
+});
 
 test('viewing the homepage', function(assert) {
-  server.createList('reminder', 5);
-
-  visit('/');
+  visit('/reminders');
 
   andThen(function() {
     assert.equal(currentURL(), '/reminders');
@@ -22,10 +24,10 @@ test('clicking on an individual item', function(assert) {
   server.createList('reminder', 5);
 
   visit('/');
-  click('.spec-reminder-item:first');
+  click('.reminder-title-link:first');
 
   andThen(function() {
-    assert.equal(currentURL(), '/1');
-    assert.equal(Ember.$('.spec-reminder-item:first').text().trim(), Ember.$('.spec-reminder-title').text().trim());
+    assert.equal(currentURL(), '/reminders/1');
+    assert.equal(Ember.$('.reminder-title:first').text().trim(), Ember.$('.reminder-title:last').text().trim());
   });
 });

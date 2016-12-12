@@ -1,29 +1,35 @@
-<article>
+<article class="spec-reminder-item">
   {{#if reminder.isEditing}}
-  <form class="add-reminder--form" {{action 'saveReminder' reminder on="submit"}}>
-    <label>
-      Title
-      {{input class="spec-input-title" value=reminder.title}}
-    </label>
-    <label>
-      Date
-      {{input type="date" class="spec-input-date" value=reminder.date}}
-    </label>
-    <label>
-      Notes
-      {{textarea class="spec-textarea-notes" value=reminder.notes}}
-    </label>
-    <button class="add-reminder--submit">Submit</button>
-  </form>
+    <form class="add-reminder--form" {{action 'saveReminder' reminder on="submit"}}>
+      <label>
+        Title
+        {{input class="spec-input-title" value=reminder.title}}
+      </label>
+      <label>
+        Date
+        {{input type="date" class="spec-input-date" value=reminder.date}}
+      </label>
+      <label>
+        Notes
+        {{textarea class="spec-textarea-notes" value=reminder.notes}}
+      </label>
+      <button class="add-reminder--submit">Submit</button>
+    </form>
   {{else}}
-    <h2 class="reminder-title">
-      {{#link-to 'reminders.reminder' reminder}}
-        {{reminder.title}}
-      {{/link-to}}
-    </h2>
-    <p class="reminder-date">{{reminder.date}}</p>
-    <p class="reminder-notes">{{reminder.notes}}</p>
-    <button class="btn btn-xs btn-success" {{action 'editReminder' reminder}}>Edit</button>
+    {{#if reminder}}
+      <h2 class="reminder-title">
+        {{#link-to 'reminders.reminder' reminder class="reminder-title-link"}}
+          {{reminder.title}}
+        {{/link-to}}
+      </h2>
+      <p class="reminder-date">{{reminder.date}}</p>
+      <p class="reminder-notes">{{reminder.notes}}</p>
+      <button class="btn btn-xs btn-success" {{action 'editReminder' reminder}}>Edit</button>
+    {{else}}
+      <h2 class="reminder-title">{{model.title}}</h2>
+      <p class="reminder-date">{{model.date}}</p>
+      <p class="reminder-notes">{{model.notes}}</p>
+    {{/if}}
   {{/if}}
 </article>
 {{yield}}
