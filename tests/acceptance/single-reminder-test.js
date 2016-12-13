@@ -21,3 +21,13 @@ moduleForAcceptance('Acceptance | single reminder', {
       assert.equal(Ember.$('.reminder-title:first').text().trim(), 'sample title');
     });
   });
+
+  test('it should show an indicator if the user has unsaved changes', function(assert) {
+    visit('/reminders');
+    click('.reminder-edit:first');
+    fillIn('.spec-input-title', 'sample title');
+
+    andThen(function() {
+      assert.equal(Ember.$('.unsaved').length, 1);
+    });
+  });
