@@ -33,6 +33,16 @@ moduleForAcceptance('Acceptance | single reminder', {
     });
   });
 
+  test('it should remove a reminder from the page if the remove button is clicked', function(assert) {
+    visit('/reminders');
+    click('.reminder-edit:first');
+    click('.add-reminder--remove:first');
+
+    andThen(function() {
+      assert.equal(Ember.$('.reminder').length, 4);
+    });
+  });
+
   test('it should add a new reminder to the rendered list when the add reminder field is submitted with values', function(assert) {
     visit('/reminders');
     click('.reminder-edit:first');
