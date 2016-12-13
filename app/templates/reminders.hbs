@@ -1,9 +1,18 @@
-<ul class="spec-reminder-list">
-  {{#each model as |reminder|}}
-    {{single-reminder reminder=reminder }}
-  {{/each}}
-  {{#link-to 'reminders.new'}}
-    <button> Add Reminder </button>
-  {{/link-to}}
-</ul>
+{{#if model}}
+  <ul class="spec-reminder-list">
+    {{#each model as |reminder|}}
+      {{single-reminder reminder=reminder }}
+    {{/each}}
+  </ul>
+
+{{else}}
+  <p class='welcome-message'> If you need to write a memento, click the add reminder button below
+  </p>
+  <img src='./memento.png' alt='Guy Pearce'/>
+{{/if}}
+
+{{#link-to 'reminders.new'}}
+  <button> Add Reminder </button>
+{{/link-to}}
+
 {{outlet}}

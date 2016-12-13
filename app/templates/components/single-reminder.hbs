@@ -33,6 +33,7 @@
           Notes
           {{textarea class="spec-textarea-notes" value=reminder.notes}}
         </label>
+        <button class="revert-reminder--revert" {{action 'rollbackChanges' reminder}}>Undo Changes</button>
         <button class="add-reminder--submit">Submit</button>
       </form>
     {{/if}}

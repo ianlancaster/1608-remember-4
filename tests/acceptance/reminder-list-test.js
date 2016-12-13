@@ -11,8 +11,20 @@ moduleForAcceptance('Acceptance | reminders list', {
   }
 });
 
+test('viewing the default page without reminders', function(assert) {
+  server.createList('reminder', 0);
+
+  visit('/');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders');
+    assert.equal(Ember.$('.welcome-message').length, 1);
+  });
+});
+
 test('viewing the homepage', function(assert) {
   visit('/reminders');
+
 
   andThen(function() {
     assert.equal(currentURL(), '/reminders');

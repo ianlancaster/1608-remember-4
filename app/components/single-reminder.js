@@ -17,6 +17,10 @@ export default Ember.Component.extend({
       );
     },
 
+    rollbackChanges(reminder) {
+      reminder.rollbackAttributes();
+    },
+
     createReminder() {
       const reminder = this.getProperties('title', 'date', 'notes');
       reminder.date = new Date(reminder.date);
