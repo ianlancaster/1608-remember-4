@@ -1,20 +1,38 @@
 <article class="spec-reminder-item">
   {{#if reminder.isEditing}}
-    <form class="add-reminder--form" {{action 'saveReminder' reminder on="submit"}}>
-      <label>
-        Title
-        {{input class="spec-input-title" value=reminder.title}}
-      </label>
-      <label>
-        Date
-        {{input type="date" class="spec-input-date" value=reminder.date}}
-      </label>
-      <label>
-        Notes
-        {{textarea class="spec-textarea-notes" value=reminder.notes}}
-      </label>
-      <button class="add-reminder--submit">Submit</button>
-    </form>
+    {{#if reminder.isNew}}
+      <form class="add-reminder--form" {{action "createReminder" on="submit"}}>
+        <label>
+          Title
+          {{input class="spec-input-title" value=title}}
+        </label>
+        <label>
+          Date
+          {{input type="date" class="spec-input-date" value=date}}
+        </label>
+        <label>
+          Notes
+          {{textarea class="spec-textarea-notes" value=notes}}
+        </label>
+        <button class="add-reminder--submit">Submit</button>
+      </form>
+    {{else}}
+      <form class="add-reminder--form" {{action 'saveReminder' reminder on="submit"}}>
+        <label>
+          Title
+          {{input class="spec-input-title" value=reminder.title}}
+        </label>
+        <label>
+          Date
+          {{input type="date" class="spec-input-date" value=reminder.date}}
+        </label>
+        <label>
+          Notes
+          {{textarea class="spec-textarea-notes" value=reminder.notes}}
+        </label>
+        <button class="add-reminder--submit">Submit</button>
+      </form>
+    {{/if}}
   {{else}}
     <h2 class="reminder-title">
       {{#link-to 'reminders.reminder' reminder class="reminder-title-link"}}
