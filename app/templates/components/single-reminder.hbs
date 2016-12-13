@@ -1,4 +1,5 @@
 <article class="spec-reminder-item">
+  {{#if reminder.hasDirtyAttributes}}🔴 unsaved{{/if}}
   {{#if reminder.isEditing}}
     {{#if reminder.isNew}}
       <form class="add-reminder--form" {{action "createReminder" on="submit"}}>
