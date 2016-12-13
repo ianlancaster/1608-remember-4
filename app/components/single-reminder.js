@@ -28,5 +28,9 @@ export default Ember.Component.extend({
         this.setProperties({ title: '', date: '', notes: '' });
       });
     },
+
+    deleteReminder(reminder) {
+      reminder.destroyRecord();
+    }
   }
 });
