@@ -16,20 +16,14 @@
       <button class="add-reminder--submit">Submit</button>
     </form>
   {{else}}
-    {{#if reminder}}
-      <h2 class="reminder-title">
-        {{#link-to 'reminders.reminder' reminder class="reminder-title-link"}}
-          {{reminder.title}}
-        {{/link-to}}
-      </h2>
-      <p class="reminder-date">{{reminder.date}}</p>
-      <p class="reminder-notes">{{reminder.notes}}</p>
-      <button class="reminder-edit" {{action 'editReminder' reminder}}>Edit</button>
-    {{else}}
-      <h2 class="reminder-title">{{model.title}}</h2>
-      <p class="reminder-date">{{model.date}}</p>
-      <p class="reminder-notes">{{model.notes}}</p>
-    {{/if}}
+    <h2 class="reminder-title">
+      {{#link-to 'reminders.reminder' reminder class="reminder-title-link"}}
+        {{reminder.title}}
+      {{/link-to}}
+    </h2>
+    <p class="reminder-date">{{reminder.date}}</p>
+    <p class="reminder-notes">{{reminder.notes}}</p>
+    <button class="reminder-edit" {{action 'editReminder' reminder}}>Edit</button>
   {{/if}}
 </article>
 {{yield}}
