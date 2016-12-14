@@ -1,6 +1,12 @@
-{{single-reminder
-  reminder=reminder
-  model=model
-}}
+<h2 class="reminder-title">
+  {{model.title}}
+</h2>
+<p class="reminder-date">{{model.date}}</p>
+<p class="reminder-notes">{{model.notes}}</p>
 
+{{#link-to 'reminders.edit' model}}
+  <button class="reminder-edit">Edit</button>
+{{/link-to}}
+
+<button class="add-reminder--remove" {{action 'deleteReminder' model}}>Remove</button>
 {{outlet}}

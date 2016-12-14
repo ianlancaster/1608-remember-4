@@ -1,58 +1,29 @@
 <article class="spec-reminder-item">
-  {{#if reminder.hasDirtyAttributes}}
+  {{#if model.hasDirtyAttributes}}
     <p class="unsaved">🔴 unsaved</p>
   {{/if}}
-  {{#if reminder.isEditing}}
-    {{#if reminder.isNew}}
-      <form class="add-reminder--form" {{action "createReminder" on="submit"}}>
-        <label>
-          Title
-          {{input class="spec-input-title" value=title}}
-        </label>
-        <label>
-          Date
-          {{input type="date" class="spec-input-date" value=date}}
-        </label>
-        <label>
-          Notes
-          {{textarea class="spec-textarea-notes" value=notes}}
-        </label>
-        <button class="add-reminder--submit">Submit</button>
-      </form>
-    {{else}}
-      <form class="add-reminder--form" {{action 'saveReminder' reminder on="submit"}}>
-        <label>
-          Title
-          {{input class="spec-input-title" value=reminder.title}}
-        </label>
-        <label>
-          Date
-          {{input type="date" class="spec-input-date" value=reminder.date}}
-        </label>
-        <label>
-          Notes
-          {{textarea class="spec-textarea-notes" value=reminder.notes}}
-        </label>
-        <button class="revert-reminder--revert" {{action 'rollbackChanges' reminder}}>Undo Changes</button>
-        <button class="add-reminder--remove" {{action 'deleteReminder' reminder}}>Remove</button>
-        <button class="add-reminder--submit">Submit</button>
-      </form>
+
+
+  <form class="add-reminder--form" {{action submitAction model on="submit"}}>
+    <label>
+      Title
+      {{input class="spec-input-title" value=model.title}}
+    </label>
+    <label>
+      Date
+      {{input type="date" class="spec-input-date" value=model.date}}
+    </label>
+    <label>
+      Notes
+      {{textarea class="spec-textarea-notes" value=model.notes}}
+    </label>
+
+    {{#if isEditing}}
+      <button class="revert-reminder--revert" {{action 'rollbackChanges' model}}>Undo Changes</button>
     {{/if}}
-  {{else}}
-    {{#if reminder}}
-      <h2 class="reminder-title">
-        {{#link-to 'reminders.reminder' reminder class="reminder-title-link"}}
-          {{reminder.title}}
-        {{/link-to}}
-      </h2>
-      <p class="reminder-date">{{reminder.date}}</p>
-      <p class="reminder-notes">{{reminder.notes}}</p>
-      <button class="reminder-edit" {{action 'editReminder' reminder}}>Edit</button>
-    {{else}}
-      <h2 class="reminder-title">{{model.title}}</h2>
-      <p class="reminder-date">{{model.date}}</p>
-      <p class="reminder-notes">{{model.notes}}</p>
-    {{/if}}
-  {{/if}}
+
+    <button class="add-reminder--submit">Submit</button>
+  </form>
+
 </article>
 {{yield}}

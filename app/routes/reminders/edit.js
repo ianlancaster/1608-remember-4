@@ -5,10 +5,8 @@ export default Ember.Route.extend({
     return this.store.find('reminder', params.reminder_id);
   },
   actions: {
-    deleteReminder(reminder) {
-      reminder.destroyRecord().then(() => {
-        this.transitionTo('reminders')
-      });
+    goHome() {
+      this.transitionTo('reminders');
     }
   }
 });

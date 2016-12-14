@@ -1,7 +1,13 @@
 {{#if model}}
   <ul class="spec-reminder-list">
     {{#each model as |reminder|}}
-      {{single-reminder reminder=reminder }}
+      <h2 class="reminder-title">
+        {{#link-to 'reminders.reminder' reminder class="reminder-title-link"}}
+          {{reminder.title}}
+        {{/link-to}}
+      </h2>
+      <p class="reminder-date">{{reminder.date}}</p>
+      <p class="reminder-notes">{{reminder.notes}}</p>
     {{/each}}
   </ul>
 
@@ -10,6 +16,8 @@
   </p>
   <img src='./memento.png' alt='Guy Pearce'/>
 {{/if}}
+
+
 
 {{#link-to 'reminders.new'}}
   <button> Add Reminder </button>

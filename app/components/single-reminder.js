@@ -7,30 +7,24 @@ export default Ember.Component.extend({
   classNames: ['reminder'],
 
   actions: {
-    editReminder(reminder) {
-      reminder.set('isEditing', true);
-    },
 
     saveReminder(reminder) {
-      reminder.save().then(
-        reminder => reminder.set('isEditing', false)
-      );
+      reminder.save().then(() => {
+        this.sendAction('goHome');
+      });
     },
 
     rollbackChanges(reminder) {
       reminder.rollbackAttributes();
     },
 
-    createReminder() {
-      const reminder = this.getProperties('title', 'date', 'notes');
+    createReminder(model) {
+      const reminder = model.getProperties('title', 'date', 'notes');
       reminder.date = new Date(reminder.date);
       this.get('store').createRecord('reminder', reminder).save().then(() => {
         this.setProperties({ title: '', date: '', notes: '' });
       });
-    },
-
-    deleteReminder(reminder) {
-      reminder.destroyRecord();
     }
+
   }
 });
